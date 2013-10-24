@@ -26,7 +26,7 @@ inline cycles_t rdtsc() {
 }
 
 
-inline volatile timeMeasurementOveheadRead() {
+inline volatile void timeMeasurementOveheadRead() {
     
     double timing = 0;
     int i=0;
@@ -49,7 +49,7 @@ inline volatile timeMeasurementOveheadRead() {
 }
 
 
-inline volatile loopMeasurementOverhead() {
+inline volatile void loopMeasurementOverhead() {
     double timing = 0;
     int i =0;
     long long startloop = rdtsc();
