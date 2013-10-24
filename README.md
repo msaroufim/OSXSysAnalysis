@@ -1,6 +1,5 @@
-Full System Analysis of OS X 10.8.5
-Part 1 is CPU and scheduling operations
-The included files in CPU are
+# Full System Analysis of OS X 10.8.5
+## Part 1 is CPU and scheduling operations
 * timemeasureoverhead.c which calculates the average time rdtsc() takes
 * procedure.c which calculates the average time a loop with 0-7 arguments takes
 * syscall.c which calculates the average time a minimal system call takes
