@@ -30,7 +30,7 @@ inline volatile timeMeasurementOveheadRead() {
     
     double timing = 0;
     int i=0;
-    long long startloop = rdtsc();
+    //long long startloop = rdtsc();
     for (i=0; i<MAX; i++) {
         long long start = rdtsc();
         long long end = rdtsc();
@@ -39,17 +39,30 @@ inline volatile timeMeasurementOveheadRead() {
         timing += end - start;
         
     }
-    long long endloop = rdtsc();
-    double looptime = endloop - startloop;
-    printf("for loop overhead is %g ",(looptime/100));
-    printf("Average number of cycles overhead is %g \n", (timing));
+    //long long endloop = rdtsc();
+    //double looptime = endloop - startloop;
+    //printf("for loop overhead is %g ",(looptime/100));
+    printf("Average number of cycles overhead is %g \n", (timing/MAX));
 
     //maybe should remove 10e9
     printf("Time measurement overhead is %g ns\n", (timing/(MAX*CPU_FREQ)));
 }
 
+
+inline volatile loopMeasurementOverhead() {
+    double timing = 0;
+    int i =0;
+    long long startloop = rdtsc();
+    for (i=0;i<MAX;i++) {
+    }
+    long long endloop = rdtsc();
+    double looptime = endloop - startloop;
+    printf("loop measurement overhead %g\n",looptime/MAX);
+}
+
 int main() {
 
 	timeMeasurementOveheadRead();
+    loopMeasurementOverhead();
 	return 0;
 }

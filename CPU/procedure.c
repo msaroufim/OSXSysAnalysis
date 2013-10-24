@@ -48,7 +48,7 @@ inline void procedure(int count, ...)
     va_end(ap);
     printf("Created a function with %d arguments \n", (count));
     long long end = rdtsc();
-    timing = (start - end)/2.66;
+    timing = (start - end)/MAX;
      //printf("the start time for procedure with parameter count %llu is %llu \n", (count,start));
     //printf("the end time for procedure with parameter count %llu is %llu \n",(count,end));
     printf("the time overhead for procedure is %llu \n",(timing));
@@ -56,6 +56,7 @@ inline void procedure(int count, ...)
 
 
 int main() {
+  procedure(0);
   procedure(1,1);
   procedure(2,1,2);
   procedure(3,1,2,3);

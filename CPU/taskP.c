@@ -25,60 +25,35 @@
 
 typedef unsigned long long cycles_t;
 
+
 inline cycles_t rdtsc() {
     cycles_t result;
     __asm__ __volatile__ ("rdtsc" : "=A" (result));
     return result;
 }
 
-
-
-
 /**********************************/
 
-inline void taskCreationProcess() {
+void taskCreationProcess() {
   
   int i, status;
   pid_t pid;
-  double time, time_m;
+  double timing;
   
   long long start1 = rdtsc();
 
   for(i=0; i<MAX; i++) {
-      /* if pid = -1 means we got an error
-            pid =  0 means we are in a child process
-            pid >  0 means we are in a parent process
-      */
       pid = fork();
       if (pid == 0) {
 		  exit(0);
       }
   }
-
-  /*
-
-  */
-  waitpid(pid, &status,  0);
   long long end1 = rdtsc();
   
-  ////
+  //divide by max if you want the  time in ns
+  timing = (((end1 - start1)/ CPU_FREQ)); 
   
-  long long start2 = rdtsc();
-  
-  for(i=0; i<MIN; i++) {
-      pid = fork();
-      if (pid == 0) {
-		  exit(0);
-      }
-  }
-  waitpid(pid, &status,  0);
-  long long end2 = rdtsc();
-  
-  timing = (((((end1 - start1) - (end2 - start2)))/ (CPU_FREQ) * (MAX - MIN))); 
-  //time = (((((end1 - start1) - (end2 - start2)))/ CPU_FREQ) / (MAX - MIN)); 
-  printf("Average time to create a process: %g ns\n", timing);
-  
-  
+  printf("Average time to creat a process: %g ns\n", timing);
 }
 
 /**********************************/

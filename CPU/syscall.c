@@ -12,6 +12,10 @@
 #include <pthread.h> 
 #include <sys/times.h>
 #include <math.h>
+#include <sys/types.h>
+#include <unistd.h>
+
+       
 
 #define MAX 100
 #define MIN 50
@@ -33,11 +37,12 @@ inline cycles_t rdtsc() {
 //minimal system call is working
 inline int mimimalSysCall() {  
 	long long timing = 0; 
-
+	int i = 0;
+	for (i; i < MAX; i++) {
 		long long start = rdtsc();
-		syscall(2);
+		pid_t getpid(void);
 		long long end = rdtsc();
-		timing = end - start; 
+		timing += end - start; }
 	
   timing = timing / MAX;
   return timing;
@@ -47,7 +52,7 @@ inline int mimimalSysCall() {
 int main() {
 	long long a;
 	a = mimimalSysCall();
-	printf("the average number of cycles %llu ns \n",(a));
+	printf("the average number of cycles %llu  \n",(a));
 	printf("the average time a syscall takes  %f ns",(a/CPU_FREQ));
 	return 0;
 }
