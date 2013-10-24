@@ -28,22 +28,24 @@ inline cycles_t rdtsc() {
 
 inline volatile timeMeasurementOveheadRead() {
     
-    double time = 0;
+    double timing = 0;
     int i=0;
-    int a =0;
+    long long startloop = rdtsc();
     for (i=0; i<MAX; i++) {
         long long start = rdtsc();
-        a = i;
         long long end = rdtsc();
-        printf("the start time is %llu \n", start);
-        printf("the end time is %llu \n",end);
-        time += end - start;
+        //printf("the start time is %llu \n", start);
+        //printf("the end time is %llu \n",end);
+        timing += end - start;
         
     }
-    printf("Average number of cycles overhead is %g\n", (time/(MAX)));
+    long long endloop = rdtsc();
+    double looptime = endloop - startloop;
+    printf("for loop overhead is %g ",(looptime/100));
+    printf("Average number of cycles overhead is %g \n", (timing));
 
     //maybe should remove 10e9
-    printf("Time measurement overhead is %g ns\n", (time/(MAX*CPU_FREQ))*10e9);
+    printf("Time measurement overhead is %g ns\n", (timing/(MAX*CPU_FREQ)));
 }
 
 int main() {
