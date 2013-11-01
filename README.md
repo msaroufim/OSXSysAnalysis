@@ -8,3 +8,6 @@
 * contextswitch.c which calculates the average time it takes to perform a context switch for both threads and processes
 
 ## Memory operations
+* RAM + L1 and L2 Latency
+* RAM Bandwidth
+* Page fault 
