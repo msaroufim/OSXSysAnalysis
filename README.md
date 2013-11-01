@@ -1,4 +1,4 @@
-# Full System Analysis of OS X 10.8.5
+# Full System Analysis of OS X Maverick
 ## CPU and scheduling operations
 * timemeasureoverhead.c which calculates the average time rdtsc() takes
 * procedure.c which calculates the average time a loop with 0-7 arguments takes
