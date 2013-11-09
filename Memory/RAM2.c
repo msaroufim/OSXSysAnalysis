@@ -47,14 +47,29 @@ int main() {
 //array of rdstc
 Array a;
 Array RDT;
-
+Array RDTread;
 int i;
 
 initArray(&a, 5);  // initially 5 elements
+initArray(&RDT,5);
+initArray(&RDTread,5);
+
+
+//time writing to memory
 for (i = 0; i < MAX; i++) {
   insertArray(&RDT,rdstc())
   insertArray(&a, i);  // automatically resizes as necessary
 }
+
+
+//time reading the array
+for(i = 0; i < MAX ; i++) {
+  A[i];
+  insertArray(&RDTread,rdtsc);
+}
+
+//plots are simple latrenvy is average time for a single operation
+//bandwith is the number of operations we can perform in a unit time interval
 
 
 printf(" The number of used elements is%d\n", a.used);  // print number of elements
@@ -62,7 +77,8 @@ for(i = 0; i <MAX; i++) {
 printf("The %d'ith iteration took, %llu cycles",(i,RDT[i]));
 }
 freeArray(&a);
-freeArray(&RDT)
+freeArray(&RDT);
+freeArray(&RDTread);
 
   return 0;
 }
